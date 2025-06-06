@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito in Manutenzione - Milano Re Costruzioni</title>
+    <meta name="description" content="Il sito è temporaneamente in manutenzione. Torneremo presto online!">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* Container principale */
+        .maintenance-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Logo/Icona */
+        .maintenance-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* Titolo */
+        .maintenance-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        /* Sottotitolo */
+        .maintenance-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        /* Messaggio principale */
+        .maintenance-message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #34495e;
+        }
+        
+        /* Countdown container */
+        .countdown-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-title {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 10px;
+            min-width: 70px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            line-height: 1;
+        }
+        
+        .countdown-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* Informazioni di contatto */
+        .contact-info {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .contact-details {
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        
+        .contact-details a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        
+        .progress-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 75%;
+            border-radius: 4px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Footer */
+        .maintenance-footer {
+            font-size: 0.85rem;
+            color: #adb5bd;
+            margin-top: 20px;
+        }
+        
+        /* Animazioni */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .maintenance-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Media Queries - Mobile First */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .maintenance-title {
+                font-size: 2rem;
+            }
+            
+            .maintenance-icon {
+                font-size: 3rem;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .maintenance-title {
+                font-size: 1.7rem;
+            }
+            
+            .maintenance-subtitle {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                min-width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="maintenance-container" role="main">
+        <!-- Icona principale -->
+        <span class="maintenance-icon" role="img" aria-label="Manutenzione in corso">🔧</span>
+        
+        <!-- Titolo e sottotitolo -->
+        <h1 class="maintenance-title">Sito in Manutenzione</h1>
+        <p class="maintenance-subtitle">Stiamo migliorando la tua esperienza</p>
+        
+        <!-- Messaggio principale -->
+        <div class="maintenance-message">
+            <p>Il nostro sito è temporaneamente offline per manutenzione programmata. Stiamo lavorando per offrirti un'esperienza ancora migliore!</p>
+            <p>Ci scusiamo per l'inconveniente e ti ringraziamo per la pazienza.</p>
+        </div>
+        
+        <!-- Countdown (opzionale - personalizzabile) -->
+        <div class="countdown-container">
+            <h2 class="countdown-title">Tempo stimato di completamento</h2>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">02</span>
+                    <span class="countdown-label">Ore</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">30</span>
+                    <span class="countdown-label">Minuti</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Secondi</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Progress bar -->
+        <div class="progress-container">
+            <div class="progress-label">Progresso manutenzione: 75%</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        
+        <!-- Informazioni di contatto -->
+        <div class="contact-info">
+            <h2 class="contact-title">Hai bisogno di aiuto?</h2>
+            <div class="contact-details">
+                <p>📧 Email: <a href="mailto:info@milanorecostruzioni.it">info@milanorecostruzioni.it</a></p>
+                <p>📞 Telefono: <a href="tel:+390212345678">+39 02 1234 5678</a></p>
+                <p>💬 Seguici sui nostri canali social per aggiornamenti in tempo reale</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="maintenance-footer">
+            <p>&copy; 2024 Milano Ricostruzioni. Tutti i diritti riservati.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Countdown dinamico (opzionale)
+        const countdownFunction = () => {
+            // Imposta qui la data/ora di fine manutenzione
+            // Esempio: 2 ore da ora
+            const endTime = new Date().getTime() + (2 * 60 * 60 * 1000);
+            
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                if (distance < 0) {
+                    document.getElementById('countdown').innerHTML = '<p>Manutenzione completata!</p>';
+                    return;
+                }
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            };
+            
+            // Aggiorna ogni secondo
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        };
+        
+        // Avvia il countdown quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', countdownFunction);
+        
+        // Opzionale: Auto-refresh della pagina ogni 5 minuti
+        // setTimeout(() => {
+        //     window.location.reload();
+        // }, 5 * 60 * 1000);
+    </script>
+</body>
+</html> 

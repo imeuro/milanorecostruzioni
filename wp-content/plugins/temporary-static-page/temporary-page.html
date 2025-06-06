@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito in Allestimento - Milano Re Costruzioni</title>
+    <meta name="description" content="Il sito è in allestimento. Saremo presto online!">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts - PT Serif Caption -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif+Caption&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variabili CSS per i colori */
+        :root {
+            /* Colori principali */
+            --primary-color: #667eea;
+            --primary-dark: #764ba2;
+            --accent-color: #667eea;
+            
+            /* Colori di sfondo */
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --section-bg-light: #f8f9fa;
+            --section-bg-medium: #e9ecef;
+            --card-bg: white;
+            
+            /* Colori del testo */
+            --text-primary: #333;
+            --text-heading: #2c3e50;
+            --text-secondary: #34495e;
+            --text-muted: #7f8c8d;
+            --text-light: #6c757d;
+            --text-lighter: #495057;
+            --text-footer: #adb5bd;
+            
+            /* Ombre e trasparenze */
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-strong: rgba(0, 0, 0, 0.1);
+            
+            /* Colori di stato */
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --error-color: #dc3545;
+            
+            /* Bordi e divisori */
+            --border-color: #dee2e6;
+            --divider-color: #e9ecef;
+            
+            /* Font */
+            --font-primary: 'PT Serif Caption', serif;
+        }
+        
+        /*
+        ✨ PERSONALIZZAZIONE FACILE DEI COLORI ✨
+        
+        Per cambiare i colori della pagina, modifica le variabili sopra:
+        
+        🎨 Tema scuro:
+        --bg-gradient-start: #2c3e50;
+        --bg-gradient-end: #34495e;
+        --container-bg: rgba(52, 73, 94, 0.95);
+        --text-primary: #ecf0f1;
+        --text-heading: #ffffff;
+        
+        🎨 Tema verde:
+        --primary-color: #27ae60;
+        --primary-dark: #2ecc71;
+        --bg-gradient-start: #27ae60;
+        --bg-gradient-end: #2ecc71;
+        
+        🎨 Tema rosso:
+        --primary-color: #e74c3c;
+        --primary-dark: #c0392b;
+        --bg-gradient-start: #e74c3c;
+        --bg-gradient-end: #c0392b;
+        
+        🎨 Tema oro:
+        --primary-color: #f39c12;
+        --primary-dark: #d35400;
+        --bg-gradient-start: #f39c12;
+        --bg-gradient-end: #d35400;
+        */
+        
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* Container principale */
+        .maintenance-container {
+            background: var(--container-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 40px var(--shadow-strong);
+        }
+        
+        /* Logo/Icona */
+        .maintenance-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* Titolo */
+        .maintenance-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-heading);
+        }
+        
+        /* Sottotitolo */
+        .maintenance-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
+        /* Messaggio principale */
+        .maintenance-message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
+        
+        /* Countdown container */
+        .countdown-container {
+            background: var(--section-bg-light);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-title {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px 10px;
+            min-width: 70px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        
+        .countdown-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+        
+        .countdown-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* Informazioni di contatto */
+        .contact-info {
+            background: var(--section-bg-medium);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-lighter);
+        }
+        
+        .contact-details {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        
+        .contact-details a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        
+        .progress-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--section-bg-medium);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            width: 75%;
+            border-radius: 4px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Footer */
+        .maintenance-footer {
+            font-size: 0.85rem;
+            color: var(--text-footer);
+            margin-top: 20px;
+        }
+        
+        /* Animazioni */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .maintenance-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Media Queries - Mobile First */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .maintenance-title {
+                font-size: 2rem;
+            }
+            
+            .maintenance-icon {
+                font-size: 3rem;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px 5px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .maintenance-title {
+                font-size: 1.7rem;
+            }
+            
+            .maintenance-subtitle {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                min-width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="maintenance-container" role="main">
+        <!-- Icona principale -->
+        <span class="maintenance-icon" role="img" aria-label="Manutenzione in corso">🔧</span>
+        
+        <!-- Titolo e sottotitolo -->
+        <h1 class="maintenance-title">Sito in Allestimento</h1>
+        <p class="maintenance-subtitle">Stiamo migliorando la tua esperienza</p>
+        
+        <!-- Messaggio principale -->
+        <div class="maintenance-message">
+            <p>Il nostro sito è temporaneamente offline per manutenzione programmata. Stiamo lavorando per offrirti un'esperienza ancora migliore!</p>
+            <p>Ci scusiamo per l'inconveniente e ti ringraziamo per la pazienza.</p>
+        </div>
+        
+        <!-- Informazioni di contatto -->
+        <div class="contact-info">
+            <h2 class="contact-title">Hai bisogno di aiuto?</h2>
+            <div class="contact-details">
+                <p>📧 Email: <a href="mailto:info@milanorecostruzioni.it">info@milanorecostruzioni.it</a></p>
+                <p>📞 Telefono: <a href="tel:+390212345678">+39 02 1234 5678</a></p>
+                <p>💬 Seguici sui nostri canali social per aggiornamenti in tempo reale</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="maintenance-footer">
+            <p>&copy; 2025 Milano RE Costruzioni. Tutti i diritti riservati.</p>
+        </footer>
+    </main>
+</body>
+</html> 
