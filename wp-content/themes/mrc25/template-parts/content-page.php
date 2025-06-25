@@ -7,15 +7,16 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <header class="entry-header">
+
+    <header class="entry-header entry-header-full">
+        <?php if (has_post_thumbnail()) : ?>
+            <div class="post-thumbnail">
+                <?php the_post_thumbnail('mrc25-featured'); ?>
+            </div>
+        <?php endif; ?>
+
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header><!-- .entry-header -->
-
-    <?php if (has_post_thumbnail()) : ?>
-        <div class="post-thumbnail">
-            <?php the_post_thumbnail('mrc25-featured'); ?>
-        </div>
-    <?php endif; ?>
 
     <div class="entry-content">
         <?php

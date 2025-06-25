@@ -52,6 +52,7 @@ add_filter('excerpt_more', 'mrc25_excerpt_more');
 function mrc25_image_sizes() {
     add_image_size('mrc25-featured', 800, 400, true);
     add_image_size('mrc25-thumbnail', 300, 200, true);
+    add_image_size('mrc25-hero-carousel', 1920, 1080, true);
 }
 add_action('after_setup_theme', 'mrc25_image_sizes');
 

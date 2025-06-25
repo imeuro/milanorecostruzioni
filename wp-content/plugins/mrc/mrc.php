@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: MRC - Milano RE Costruzioni
- * Plugin URI: https://milanorecostruzioni.it
+ * Plugin URI: https://meuro.dev
  * Description: Plugin personalizzato per Milano RE Costruzioni. Gestisce Custom Post Types, funzionalità specifiche e moduli aggiuntivi.
  * Version: 1.0.0
- * Author: Sviluppatore Front-End
+ * Author: Meuro
  * License: GPL v2 or later
  * Text Domain: mrc
  * Domain Path: /languages

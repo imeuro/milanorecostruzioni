@@ -141,4 +141,66 @@ function mrc25_enqueue_hero_carousel_assets() {
         wp_enqueue_script('mrc25-hero-carousel', get_template_directory_uri() . '/assets/js/hero-carousel.js', array(), '1.0.0', true);
     }
 }
-add_action('wp_enqueue_scripts', 'mrc25_enqueue_hero_carousel_assets'); 
+add_action('wp_enqueue_scripts', 'mrc25_enqueue_hero_carousel_assets');
+
+/**
+ * Regenerate hero carousel images when theme is activated
+ */
+function mrc25_regenerate_hero_images() {
+    // Get all hero slides
+    $hero_slides = get_posts(array(
+        'post_type' => 'hero-slide',
+        'posts_per_page' => -1,
+        'post_status' => 'publish'
+    ));
+    
+    foreach ($hero_slides as $slide) {
+        if (has_post_thumbnail($slide->ID)) {
+            $thumbnail_id = get_post_thumbnail_id($slide->ID);
+            
+            // Force regeneration of the hero carousel size
+            $image_data = wp_get_attachment_metadata($thumbnail_id);
+            if ($image_data) {
+                // Remove existing hero carousel size if it exists
+                if (isset($image_data['sizes']['mrc25-hero-carousel'])) {
+                    unset($image_data['sizes']['mrc25-hero-carousel']);
+                }
+                
+                // Regenerate the image sizes
+                $new_image_data = wp_generate_attachment_metadata($thumbnail_id, get_attached_file($thumbnail_id));
+                if ($new_image_data) {
+                    wp_update_attachment_metadata($thumbnail_id, $new_image_data);
+                }
+            }
+        }
+    }
+}
+
+// Regenerate images on theme activation
+add_action('after_switch_theme', 'mrc25_regenerate_hero_images');
+
+/**
+ * Add admin action to manually regenerate hero carousel images
+ */
+function mrc25_admin_regenerate_hero_images() {
+    if (isset($_GET['action']) && $_GET['action'] === 'regenerate_hero_images' && 
+        isset($_GET['_wpnonce']) && wp_verify_nonce($_GET['_wpnonce'], 'regenerate_hero_images')) {
+        
+        mrc25_regenerate_hero_images();
+        
+        // Redirect back to admin with success message
+        wp_redirect(admin_url('edit.php?post_type=hero-slide&regenerated=1'));
+        exit;
+    }
+}
+add_action('admin_init', 'mrc25_admin_regenerate_hero_images');
+
+/**
+ * Add admin notice for regeneration success
+ */
+function mrc25_admin_notices() {
+    if (isset($_GET['regenerated']) && $_GET['regenerated'] === '1') {
+        echo '<div class="notice notice-success is-dismissible"><p>Immagini del carousel hero rigenerate con successo!</p></div>';
+    }
+}
+add_action('admin_notices', 'mrc25_admin_notices'); 

@@ -31,26 +31,26 @@ get_header(); ?>
             <div class="activities-grid">
                 <div class="activity-card">
                     <div class="activity-icon">
-                        <i class="fas fa-home"></i>
+                        <i class="fa-solid fa-ruler-combined"></i>
                     </div>
                     <h3>Ristrutturazioni</h3>
-                    <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, rispettando l'identità architettonica.</p>
+                    <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, nel rispetto dell'architettura.</p>
                     <a href="#" class="activity-link">Scopri di più</a>
                 </div>
                 <div class="activity-card">
                     <div class="activity-icon">
-                        <i class="fas fa-building"></i>
+                        <i class="fa-regular fa-building"></i>
+                    </div>
+                    <h3>Frazionamento</h3>
+                    <p>Suddivisione strategica di immobili in unità abitative più piccole, massimizzando il valore della proprietà.</p>
+                    <a href="#" class="activity-link">Scopri di più</a>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">
+                       <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
                     <h3>Nuove Costruzioni</h3>
                     <p>Progettiamo e realizziamo edifici residenziali e commerciali con materiali di prima qualità.</p>
-                    <a href="#" class="activity-link">Scopri di più</a>
-                </div>
-                <div class="activity-card">
-                    <div class="activity-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Manutenzione</h3>
-                    <p>Servizi di manutenzione preventiva e correttiva per mantenere i tuoi immobili in perfetto stato.</p>
                     <a href="#" class="activity-link">Scopri di più</a>
                 </div>
             </div>

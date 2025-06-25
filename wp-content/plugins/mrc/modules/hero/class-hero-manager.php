@@ -18,6 +18,12 @@ class MRC_Hero_Manager {
         add_filter('manage_hero-slide_posts_columns', array($this, 'add_admin_columns'));
         add_action('manage_hero-slide_posts_custom_column', array($this, 'render_admin_columns'), 10, 2);
         add_filter('manage_edit-hero-slide_sortable_columns', array($this, 'make_columns_sortable'));
+        
+        // Regenerate hero carousel images when a hero slide is updated
+        add_action('save_post_hero-slide', array($this, 'regenerate_hero_image'), 10, 2);
+        
+        // Add admin page actions
+        add_action('admin_notices', array($this, 'add_regenerate_button'));
     }
 
     public function register_hero_slide_cpt() {
@@ -113,7 +119,18 @@ class MRC_Hero_Manager {
         <div class="mrc-hero-carousel">
             <?php foreach ($slides as $i => $slide) :
                 $img_id = get_post_thumbnail_id($slide->ID);
-                $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'full') : '';
+                $img_url = '';
+                
+                if ($img_id) {
+                    // Try to get the custom hero carousel size first
+                    $img_url = wp_get_attachment_image_url($img_id, 'mrc25-hero-carousel');
+                    
+                    // Fallback to full size if custom size doesn't exist
+                    if (!$img_url) {
+                        $img_url = wp_get_attachment_image_url($img_id, 'full');
+                    }
+                }
+                
                 if (!$img_url) continue;
                 ?>
                 <div class="mrc-hero-slide<?php echo $i === 0 ? ' active' : ''; ?>" 
@@ -124,5 +141,48 @@ class MRC_Hero_Manager {
         </div>
         <?php
         return ob_get_clean();
+    }
+
+    public function regenerate_hero_image($post_id, $post) {
+        // Skip autosaves and revisions
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+        if (wp_is_post_revision($post_id)) return;
+        
+        // Only regenerate if the post has a thumbnail
+        if (has_post_thumbnail($post_id)) {
+            $thumbnail_id = get_post_thumbnail_id($post_id);
+            
+            // Force regeneration of the hero carousel size
+            $image_data = wp_get_attachment_metadata($thumbnail_id);
+            if ($image_data) {
+                // Remove existing hero carousel size if it exists
+                if (isset($image_data['sizes']['mrc25-hero-carousel'])) {
+                    unset($image_data['sizes']['mrc25-hero-carousel']);
+                }
+                
+                // Regenerate the image sizes
+                $new_image_data = wp_generate_attachment_metadata($thumbnail_id, get_attached_file($thumbnail_id));
+                if ($new_image_data) {
+                    wp_update_attachment_metadata($thumbnail_id, $new_image_data);
+                }
+            }
+        }
+    }
+
+    public function add_regenerate_button() {
+        global $pagenow, $post_type;
+        
+        // Only show on hero-slide admin pages
+        if ($pagenow === 'edit.php' && $post_type === 'hero-slide') {
+            $regenerate_url = wp_nonce_url(
+                admin_url('edit.php?post_type=hero-slide&action=regenerate_hero_images'),
+                'regenerate_hero_images'
+            );
+            
+            echo '<div class="notice notice-info is-dismissible">';
+            echo '<p><strong>Hero Carousel:</strong> Se le immagini non si visualizzano correttamente, ';
+            echo '<a href="' . esc_url($regenerate_url) . '" class="button button-secondary">Rigenera Immagini Carousel</a></p>';
+            echo '</div>';
+        }
     }
 } 

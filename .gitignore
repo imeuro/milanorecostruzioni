@@ -1,7 +1,7 @@
 *.log
 *.sql
 *.zip
-sync-db.sh
+*.sh
 php_errorlog
 .DS_Store
 .cursor.json
