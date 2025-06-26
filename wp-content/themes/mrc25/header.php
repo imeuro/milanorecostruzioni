@@ -13,6 +13,10 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        window.themeAssetsUrl = '<?php echo esc_js(get_template_directory_uri()); ?>/assets/img';
+    </script>
+
     <?php wp_head(); ?>
 </head>
 
@@ -26,12 +30,17 @@
             <div class="site-branding">
                 <?php
                 if (has_custom_logo()) :
-                    the_custom_logo();
-                else :
-                    ?>
+                    // Mostra comunque il custom logo di WP, ma aggiungi l'id per JS
+                    $custom_logo_id = get_theme_mod('custom_logo');
+                    $logo_url = wp_get_attachment_image_url($custom_logo_id, 'full');
+                ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="custom-logo-link" rel="home" aria-current="page">
+                        <img id="site-logo-desktop" width="80" height="64" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/mrc-ico.svg" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high" aria-label="Logo Milano RE Costruzioni">
+                    </a>
+                <?php else : ?>
                     <h1 class="site-title">
                         <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                            <?php bloginfo('name'); ?>
+                            <?php bloginfo('name'); ?> 
                         </a>
                     </h1>
                     <?php
@@ -63,10 +72,17 @@
         <div class="menu-branding">
             <?php
                 if (has_custom_logo()) :
-                    the_custom_logo();
-                else :
+                    // Mostra comunque il custom logo di WP, ma aggiungi l'id per JS
+                    $custom_logo_id = get_theme_mod('custom_logo');
+                    $logo_url = wp_get_attachment_image_url($custom_logo_id, 'full');
             ?>
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="custom-logo-link" rel="home" aria-current="page"><img width="389" height="132" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/mrc-logo.svg" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high"></a>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="custom-logo-link" rel="home" aria-current="page">
+                    <img id="site-logo-mobile" width="80" height="64" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/mrc-ico.svg" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high" aria-label="Logo Milano RE Costruzioni">
+                </a>
+            <?php else : ?>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="custom-logo-link" rel="home" aria-current="page">
+                    <img id="site-logo-mobile" width="80" height="64" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/mrc-ico.svg" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high" aria-label="Logo Milano RE Costruzioni">
+                </a>
             <?php endif; ?>
         </div>
         <?php

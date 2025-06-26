@@ -10,8 +10,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aggiungi classe scrolled quando si scrolla
         if (scrollTop > 150) {
             header.classList.add('scrolled');
+            // Cambio logo desktop e mobile
+            const logoDesktop = document.getElementById('site-logo-desktop');
+            const logoMobile = document.getElementById('site-logo-mobile');
+            if (logoDesktop) {
+                logoDesktop.src = window.themeAssetsUrl + '/mrc-logo.png';
+            }
+            if (logoMobile) {
+                logoMobile.src = window.themeAssetsUrl + '/mrc-logo.png';
+            }
         } else {
             header.classList.remove('scrolled');
+            // Ripristina logo desktop e mobile
+            const logoDesktop = document.getElementById('site-logo-desktop');
+            const logoMobile = document.getElementById('site-logo-mobile');
+            if (logoDesktop) {
+                logoDesktop.src = window.themeAssetsUrl + '/mrc-ico.svg';
+            }
+            if (logoMobile) {
+                logoMobile.src = window.themeAssetsUrl + '/mrc-ico.svg';
+            }
         }
         
         lastScrollTop = scrollTop;
