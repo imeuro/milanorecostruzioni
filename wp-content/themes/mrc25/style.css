@@ -119,13 +119,12 @@ a:hover {
 .scrolled .site-branding {
     opacity: 1;
     height: 100px;
-    /* width: 200px; */
 }
 
 img.custom-logo {
     max-width: 175px;
     width: auto;
-    height: auto;
+    height: 55px;
     transition: transform 0.3s ease;
 }
 
@@ -178,7 +177,7 @@ img.custom-logo {
 
     img.custom-logo {
         max-width: 200px;
-        width: auto;
+        height: 68px;
     }
 }
 
@@ -585,8 +584,18 @@ img.custom-logo {
     transition: opacity 0.3s ease;
 }
 
-.footer-navigation a:hover {
+.footer-navigation a:hover,
+.site-info a:hover {
     opacity: 1;
+}
+
+.footer-societa {
+    color: var(--light-gray);
+    opacity: 0.8;
+}
+
+.footer-societa strong {
+    color: var(--secondary-color);
 }
 
 .site-info {
@@ -597,7 +606,12 @@ img.custom-logo {
 
 .site-info p {
     margin: 0;
+    color: var(--light-gray);
+}
+.site-info a {
+    margin: 0;
     opacity: 0.8;
+    color: var(--light-gray);
 }
 
 /* --- Media Query FOOTER --- */
