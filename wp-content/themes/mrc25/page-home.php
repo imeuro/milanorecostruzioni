@@ -34,7 +34,7 @@ get_header(); ?>
                         <i class="fa-solid fa-ruler-combined"></i>
                     </div>
                     <h3>Ristrutturazioni</h3>
-                    <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, nel rispetto dell'architettura.</p>
+                    <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, rispettando l'identità architettonica.</p>
                     <a href="#" class="activity-link">Scopri di più</a>
                 </div>
                 <div class="activity-card">

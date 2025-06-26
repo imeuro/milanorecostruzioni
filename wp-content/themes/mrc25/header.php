@@ -61,7 +61,13 @@
     <div id="mobile-menu-overlay" class="mobile-menu-overlay" tabindex="-1" aria-hidden="true"></div>
     <nav id="mobile-menu" class="mobile-menu" aria-label="Menu principale mobile">
         <div class="menu-branding">
-            <a href="https://localhost/milanorecostruzioni/" class="custom-logo-link" rel="home" aria-current="page"><img width="389" height="132" src="https://localhost/milanorecostruzioni/wp-content/uploads/2025/06/mrc-logo.png" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high" srcset="https://localhost/milanorecostruzioni/wp-content/uploads/2025/06/mrc-logo.png 389w, https://localhost/milanorecostruzioni/wp-content/uploads/2025/06/mrc-logo-300x102.png 300w" sizes="(max-width: 389px) 100vw, 389px"></a> 
+            <?php
+                if (has_custom_logo()) :
+                    the_custom_logo();
+                else :
+            ?>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="custom-logo-link" rel="home" aria-current="page"><img width="389" height="132" src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/mrc-logo.svg" class="custom-logo" alt="Milano RE Costruzioni" decoding="async" fetchpriority="high"></a>
+            <?php endif; ?>
         </div>
         <?php
         wp_nav_menu(array(

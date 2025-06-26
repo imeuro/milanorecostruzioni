@@ -110,10 +110,12 @@ a:hover {
     padding: 0 20px;
     box-sizing: content-box;
     border-radius: 0 0 8px 0;
-    opacity: 0;
+    opacity: 1;
     transition: all 0.3s ease;
 }
-
+.home .site-branding {
+    opacity: 0;
+}
 .scrolled .site-branding {
     opacity: 1;
     height: 100px;
@@ -412,6 +414,7 @@ img.custom-logo {
 .entry-header {
     margin-bottom: 1.5rem;
 }
+
 .entry-header.entry-header-full {
     width: 100vw;
     position: absolute;
@@ -424,6 +427,7 @@ img.custom-logo {
 .entry-title {
     margin-bottom: 0.5rem;
 }
+
 .entry-header.entry-header-full .entry-title {
     position: absolute;
     bottom: 60px;
@@ -460,7 +464,8 @@ img.custom-logo {
     margin-bottom: 2rem;
     line-height: 1.7;
 }
-.entry-content > p {
+
+.entry-content>p {
     margin-bottom: 1rem;
     font-size: 1.25rem;
     line-height: 1.875rem;
@@ -799,8 +804,7 @@ img.custom-logo {
 }
 
 .mrc-activities .container {
-    backdrop-filter: blur(6px);
-    padding: 6rem 8rem 8rem 8rem;
+    padding: 6rem 3rem 8rem 2rem;
     margin: 0 auto;
     width: 100vw;
     overflow: hidden;
@@ -814,9 +818,9 @@ img.custom-logo {
 }
 
 .activity-card {
-    background: rgba(255, 255, 255, .8);
+    border: 4px solid rgba(255, 255, 255, .8);
     padding: 2.5rem 2rem;
-    border-radius: 12px;
+    border-radius: 0;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.4s ease;
@@ -825,7 +829,7 @@ img.custom-logo {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s ease-out forwards;
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(10px);
 }
 
 .activity-card:nth-child(1) {
@@ -840,6 +844,7 @@ img.custom-logo {
     animation-delay: 0.6s;
 }
 
+/* 
 .activity-card::before {
     content: '';
     position: absolute;
@@ -850,16 +855,18 @@ img.custom-logo {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     transform: scaleX(0);
     transition: transform 0.4s ease;
-}
+} 
+*/
 
 .activity-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(7px);
 }
 
-.activity-card:hover::before {
+/* .activity-card:hover::before {
     transform: scaleX(1);
-}
+} */
 
 .activity-icon {
     width: 80px;
@@ -878,18 +885,18 @@ img.custom-logo {
 
 .activity-icon i {
     font-size: 2rem;
-    color: var(--secondary-color);
+    color: var(--white);
 }
 
 .activity-card h3 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--black);
+    color: var(--white);
 }
 
 .activity-card p {
-    color: #666;
+    color: var(--white);
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -1094,6 +1101,10 @@ img.custom-logo {
 
 /* --- Media Query SEZIONI HOMEPAGE --- */
 @media (min-width: 1024px) {
+    .mrc-activities .container {
+        padding: 6rem 8rem 8rem 8rem;
+    }
+
     .activities-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 2.5rem;

@@ -51,7 +51,7 @@
 /* Hero Content */
 .mrc-hero-content {
     position: absolute;
-    top: 200px;
+    top: 33dvh;
     left: 50%;
     transform: translateX(-50%);
     max-width: 1440px;
