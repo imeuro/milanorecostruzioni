@@ -19,6 +19,10 @@ class MRC_Hero_Manager {
         add_action('manage_hero-slide_posts_custom_column', array($this, 'render_admin_columns'), 10, 2);
         add_filter('manage_edit-hero-slide_sortable_columns', array($this, 'make_columns_sortable'));
         
+        // Meta boxes
+        add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
+        add_action('save_post', array($this, 'save_meta_boxes'));
+        
         // Regenerate hero carousel images when a hero slide is updated
         add_action('save_post_hero-slide', array($this, 'regenerate_hero_image'), 10, 2);
         
@@ -58,6 +62,193 @@ class MRC_Hero_Manager {
         register_post_type('hero-slide', $args);
     }
 
+    public function add_meta_boxes() {
+        add_meta_box(
+            'hero_slide_video',
+            __('Video Hero', 'mrc'),
+            array($this, 'render_video_meta_box'),
+            'hero-slide',
+            'normal',
+            'high'
+        );
+    }
+
+    public function render_video_meta_box($post) {
+        wp_nonce_field('hero_slide_video_nonce', 'hero_slide_video_nonce');
+        
+        $video_id = get_post_meta($post->ID, '_hero_slide_video_id', true);
+        $video_url = get_post_meta($post->ID, '_hero_slide_video_url', true);
+        $video_type = get_post_meta($post->ID, '_hero_slide_video_type', true);
+        
+        // Se abbiamo un video_id, ottieni l'URL
+        if ($video_id) {
+            $video_url = wp_get_attachment_url($video_id);
+        }
+        
+        ?>
+        <table class="form-table">
+            <tr>
+                <th scope="row">
+                    <label for="hero_slide_video_id"><?php _e('Video MP4', 'mrc'); ?></label>
+                </th>
+                <td>
+                    <input type="hidden" 
+                           id="hero_slide_video_id" 
+                           name="hero_slide_video_id" 
+                           value="<?php echo esc_attr($video_id); ?>" />
+                    
+                    <div id="hero_video_preview" style="margin-bottom: 10px;">
+                        <?php if ($video_url): ?>
+                            <video controls style="max-width: 100%; height: auto; max-height: 200px;">
+                                <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                                <?php _e('Il tuo browser non supporta il tag video.', 'mrc'); ?>
+                            </video>
+                            <p><strong><?php _e('Video selezionato:', 'mrc'); ?></strong> <?php echo esc_html(basename($video_url)); ?></p>
+                        <?php else: ?>
+                            <p style="color: #666; font-style: italic;"><?php _e('Nessun video selezionato', 'mrc'); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    
+                    <button type="button" id="select_video_btn" class="button">
+                        <?php echo $video_url ? __('Cambia Video', 'mrc') : __('Seleziona Video', 'mrc'); ?>
+                    </button>
+                    
+                    <?php if ($video_url): ?>
+                        <button type="button" id="remove_video_btn" class="button button-link-delete" style="margin-left: 10px;">
+                            <?php _e('Rimuovi Video', 'mrc'); ?>
+                        </button>
+                    <?php endif; ?>
+                    
+                    <p class="description">
+                        <?php _e('Seleziona un video MP4 dalla libreria media. Il video sostituirà l\'immagine in evidenza.', 'mrc'); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <label for="hero_slide_video_type"><?php _e('Tipo Media', 'mrc'); ?></label>
+                </th>
+                <td>
+                    <select id="hero_slide_video_type" name="hero_slide_video_type">
+                        <option value="image" <?php selected($video_type, 'image'); ?>>
+                            <?php _e('Immagine', 'mrc'); ?>
+                        </option>
+                        <option value="video" <?php selected($video_type, 'video'); ?>>
+                            <?php _e('Video', 'mrc'); ?>
+                        </option>
+                    </select>
+                    <p class="description">
+                        <?php _e('Scegli se utilizzare l\'immagine in evidenza o il video.', 'mrc'); ?>
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+        jQuery(document).ready(function($) {
+            var mediaUploader;
+            
+            $('#select_video_btn').click(function(e) {
+                e.preventDefault();
+                
+                // Se l'uploader esiste già, riutilizzalo
+                if (mediaUploader) {
+                    mediaUploader.open();
+                    return;
+                }
+                
+                // Crea l'uploader
+                mediaUploader = wp.media({
+                    title: '<?php _e('Seleziona Video MP4', 'mrc'); ?>',
+                    button: {
+                        text: '<?php _e('Usa questo video', 'mrc'); ?>'
+                    },
+                    multiple: false,
+                    library: {
+                        type: 'video'
+                    }
+                });
+                
+                // Quando viene selezionato un video
+                mediaUploader.on('select', function() {
+                    var attachment = mediaUploader.state().get('selection').first().toJSON();
+                    
+                    // Verifica che sia un video MP4
+                    if (attachment.subtype !== 'mp4') {
+                        alert('<?php _e('Seleziona solo file MP4.', 'mrc'); ?>');
+                        return;
+                    }
+                    
+                    // Aggiorna i campi
+                    $('#hero_slide_video_id').val(attachment.id);
+                    
+                    // Aggiorna il preview
+                    var preview = $('#hero_video_preview');
+                    preview.html('<video controls style="max-width: 100%; height: auto; max-height: 200px;">' +
+                                '<source src="' + attachment.url + '" type="video/mp4">' +
+                                '<?php _e('Il tuo browser non supporta il tag video.', 'mrc'); ?>' +
+                                '</video>' +
+                                '<p><strong><?php _e('Video selezionato:', 'mrc'); ?></strong> ' + attachment.filename + '</p>');
+                    
+                    // Aggiorna il pulsante
+                    $('#select_video_btn').text('<?php _e('Cambia Video', 'mrc'); ?>');
+                    
+                    // Aggiungi pulsante rimuovi se non esiste
+                    if ($('#remove_video_btn').length === 0) {
+                        $('#select_video_btn').after('<button type="button" id="remove_video_btn" class="button button-link-delete" style="margin-left: 10px;"><?php _e('Rimuovi Video', 'mrc'); ?></button>');
+                    }
+                });
+                
+                mediaUploader.open();
+            });
+            
+            // Rimuovi video
+            $(document).on('click', '#remove_video_btn', function(e) {
+                e.preventDefault();
+                
+                $('#hero_slide_video_id').val('');
+                $('#hero_video_preview').html('<p style="color: #666; font-style: italic;"><?php _e('Nessun video selezionato', 'mrc'); ?></p>');
+                $('#select_video_btn').text('<?php _e('Seleziona Video', 'mrc'); ?>');
+                $(this).remove();
+            });
+        });
+        </script>
+        <?php
+    }
+
+    public function save_meta_boxes($post_id) {
+        // Verifica nonce
+        if (!isset($_POST['hero_slide_video_nonce']) || 
+            !wp_verify_nonce($_POST['hero_slide_video_nonce'], 'hero_slide_video_nonce')) {
+            return;
+        }
+
+        // Verifica permessi
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        // Salva ID video
+        if (isset($_POST['hero_slide_video_id'])) {
+            $video_id = intval($_POST['hero_slide_video_id']);
+            update_post_meta($post_id, '_hero_slide_video_id', $video_id);
+            
+            // Aggiorna anche l'URL per compatibilità
+            if ($video_id) {
+                $video_url = wp_get_attachment_url($video_id);
+                update_post_meta($post_id, '_hero_slide_video_url', $video_url);
+            } else {
+                delete_post_meta($post_id, '_hero_slide_video_url');
+            }
+        }
+
+        // Salva tipo media
+        if (isset($_POST['hero_slide_video_type'])) {
+            $video_type = sanitize_text_field($_POST['hero_slide_video_type']);
+            update_post_meta($post_id, '_hero_slide_video_type', $video_type);
+        }
+    }
+
     public function add_admin_columns($columns) {
         $new_columns = array();
         
@@ -65,7 +256,7 @@ class MRC_Hero_Manager {
         $new_columns['cb'] = $columns['cb'];
         
         // Aggiungi colonna thumbnail
-        $new_columns['thumbnail'] = __('Immagine', 'mrc');
+        $new_columns['thumbnail'] = __('Media', 'mrc');
         
         // Aggiungi titolo
         $new_columns['title'] = $columns['title'];
@@ -82,12 +273,25 @@ class MRC_Hero_Manager {
     public function render_admin_columns($column, $post_id) {
         switch ($column) {
             case 'thumbnail':
-                if (has_post_thumbnail($post_id)) {
+                $video_type = get_post_meta($post_id, '_hero_slide_video_type', true);
+                $video_id = get_post_meta($post_id, '_hero_slide_video_id', true);
+                $video_url = '';
+                
+                if ($video_id) {
+                    $video_url = wp_get_attachment_url($video_id);
+                }
+                
+                if ($video_type === 'video' && $video_url) {
+                    echo '<div style="display: flex; align-items: center; gap: 10px;">';
+                    echo '<span style="color: #0073aa; font-weight: bold;">🎥 Video</span>';
+                    echo '<span style="color: #666; font-size: 12px;">' . esc_html(basename($video_url)) . '</span>';
+                    echo '</div>';
+                } elseif (has_post_thumbnail($post_id)) {
                     $thumbnail_id = get_post_thumbnail_id($post_id);
                     $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'thumbnail');
                     echo '<img src="' . esc_url($thumbnail_url) . '" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;" alt="Thumbnail">';
                 } else {
-                    echo '<span style="color: #999; font-style: italic;">Nessuna immagine</span>';
+                    echo '<span style="color: #999; font-style: italic;">Nessun media</span>';
                 }
                 break;
                 
@@ -118,26 +322,51 @@ class MRC_Hero_Manager {
         ?>
         <div class="mrc-hero-carousel">
             <?php foreach ($slides as $i => $slide) :
+                $video_type = get_post_meta($slide->ID, '_hero_slide_video_type', true);
+                $video_id = get_post_meta($slide->ID, '_hero_slide_video_id', true);
+                $video_url = '';
+                
+                // Ottieni l'URL del video dall'ID
+                if ($video_id) {
+                    $video_url = wp_get_attachment_url($video_id);
+                }
+                
                 $img_id = get_post_thumbnail_id($slide->ID);
                 $img_url = '';
                 
-                if ($img_id) {
-                    // Try to get the custom hero carousel size first
+                if ($video_type === 'video' && $video_url) {
+                    // Renderizza video
+                    ?>
+                    <div class="mrc-hero-slide<?php echo $i === 0 ? ' active' : ''; ?> mrc-hero-video-slide" 
+                         data-title="<?php echo esc_attr($slide->post_title); ?>">
+                        <video class="mrc-hero-video" 
+                               autoplay 
+                               muted 
+                               playsinline
+                               poster="<?php echo $img_id ? wp_get_attachment_image_url($img_id, 'full') : ''; ?>">
+                            <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                        </video>
+                    </div>
+                    <?php
+                } elseif ($img_id) {
+                    // Renderizza immagine
                     $img_url = wp_get_attachment_image_url($img_id, 'mrc25-hero-carousel');
                     
                     // Fallback to full size if custom size doesn't exist
                     if (!$img_url) {
                         $img_url = wp_get_attachment_image_url($img_id, 'full');
                     }
+                    
+                    if ($img_url) {
+                        ?>
+                        <div class="mrc-hero-slide<?php echo $i === 0 ? ' active' : ''; ?>" 
+                             style="background-image:url('<?php echo esc_url($img_url); ?>');"
+                             data-title="<?php echo esc_attr($slide->post_title); ?>">
+                        </div>
+                        <?php
+                    }
                 }
-                
-                if (!$img_url) continue;
-                ?>
-                <div class="mrc-hero-slide<?php echo $i === 0 ? ' active' : ''; ?>" 
-                     style="background-image:url('<?php echo esc_url($img_url); ?>');"
-                     data-title="<?php echo esc_attr($slide->post_title); ?>">
-                </div>
-            <?php endforeach; ?>
+            endforeach; ?>
         </div>
         <?php
         return ob_get_clean();
