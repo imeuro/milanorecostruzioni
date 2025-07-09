@@ -17,6 +17,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
     --light-gray: #f3f3f3;
     --border-color: #e1e1e1;
     --white: #f9f9f9;
+    --cream: #eae8e3;
     --black: #251D07;
     --font-primary: 'PT Serif Caption', Georgia, 'Times New Roman', serif;
     --font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -38,7 +39,7 @@ html {
 body {
     font-family: 'PT Serif Caption', Georgia, 'Times New Roman', serif;
     color: var(--text-color);
-    background-color: var(--white);
+    background-color: var(--cream);
 }
 
 /* Typography */
@@ -157,7 +158,7 @@ img.custom-logo {
 }
 
 .site-header.scrolled {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(234, 232, 227, 0.8);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     height: 100px;
@@ -200,7 +201,7 @@ img.custom-logo {
 }
 
 .nav-menu li a {
-    color: var(--white);
+    color: var(--cream);
     font-family: var(--font-secondary);
     font-size: 1.1rem;
     font-weight: 400;
@@ -270,7 +271,7 @@ img.custom-logo {
 .hamburger {
     width: 28px;
     height: 3px;
-    background: var(--white);
+    background: var(--cream);
     border-radius: 2px;
     position: relative;
     transition: background 0.3s;
@@ -284,7 +285,7 @@ img.custom-logo {
     left: 0;
     width: 28px;
     height: 3px;
-    background: var(--white);
+    background: var(--cream);
     border-radius: 2px;
     transition: transform 0.3s, top 0.3s, bottom 0.3s;
 }
@@ -343,7 +344,7 @@ img.custom-logo {
     width: 80vw;
     max-width: 400px;
     height: 100vh;
-    background: var(--white);
+    background: var(--cream);
     z-index: 9999;
     box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08);
     transition: left 0.3s;
@@ -557,8 +558,8 @@ img.custom-logo {
 
 /* ========== FOOTER ========== */
 .site-footer {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--primary-color);
+    color: var(--cream);
     padding: 2rem 0;
     margin-top: 2rem;
 }
@@ -580,7 +581,7 @@ img.custom-logo {
 }
 
 .footer-navigation a {
-    color: var(--white);
+    color: var(--cream);
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
@@ -858,29 +859,11 @@ img.custom-logo {
     animation-delay: 0.6s;
 }
 
-/* 
-.activity-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-} 
-*/
-
 .activity-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(7px);
 }
-
-/* .activity-card:hover::before {
-    transform: scaleX(1);
-} */
 
 .activity-icon {
     width: 80px;
@@ -943,7 +926,7 @@ img.custom-logo {
 /* Sezione Portfolio */
 .mrc-portfolio {
     padding: 6rem 0;
-    background: white;
+    background: var(--cream);
 }
 
 .portfolio-grid {
@@ -1100,7 +1083,7 @@ img.custom-logo {
 .btn-primary:hover,
 .wp-block-button__link:hover {
     background: var(--secondary-color);
-    color: var(--white);
+    color: var(--cream);
     transform: translateY(-2px);
     border: 2px solid var(--secondary-color);
 }
