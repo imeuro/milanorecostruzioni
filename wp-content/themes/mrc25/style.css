@@ -1082,8 +1082,8 @@ img.custom-logo {
 
 .btn-primary:hover,
 .wp-block-button__link:hover {
-    background: var(--secondary-color);
-    color: var(--cream);
+    background: var(--cream);
+    color: var(--primary-color);
     transform: translateY(-2px);
     border: 2px solid var(--secondary-color);
 }
