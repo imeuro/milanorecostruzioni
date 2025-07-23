@@ -35,7 +35,7 @@ get_header(); ?>
                     </div>
                     <h3>Ristrutturazioni</h3>
                     <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, rispettando l'identità architettonica.</p>
-                    <a href="#" class="activity-link">Scopri di più</a>
+                    <a href="<?php echo get_permalink(8); ?>#ristrutturazioni" class="activity-link">Scopri di più</a>
                 </div>
                 <div class="activity-card">
                     <div class="activity-icon">
@@ -43,15 +43,15 @@ get_header(); ?>
                     </div>
                     <h3>Frazionamento</h3>
                     <p>Suddivisione strategica di immobili in unità abitative più piccole, massimizzando il valore della proprietà.</p>
-                    <a href="#" class="activity-link">Scopri di più</a>
+                    <a href="<?php echo get_permalink(8); ?>#frazionamento" class="activity-link">Scopri di più</a>
                 </div>
                 <div class="activity-card">
                     <div class="activity-icon">
                        <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <h3>Nuove Costruzioni</h3>
-                    <p>Progettiamo e realizziamo edifici residenziali e commerciali con materiali di prima qualità.</p>
-                    <a href="#" class="activity-link">Scopri di più</a>
+                    <h3>Materiali & finiture</h3>
+                    <p>Selezione di materiali di finitura esclusivi e di alta qualità per valorizzare al meglio il tuo immobile.</p>
+                    <a href="<?php echo get_permalink(8); ?>#materiali" class="activity-link">Scopri di più</a>
                 </div>
             </div>
         </div>
