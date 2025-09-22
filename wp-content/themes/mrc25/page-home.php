@@ -49,7 +49,7 @@ get_header(); ?>
                     <div class="activity-icon">
                        <i class="fa-solid fa-screwdriver-wrench"></i>
                     </div>
-                    <h3>Materiali & finiture</h3>
+                    <h3>Personalizzazione</h3>
                     <p>Selezione di materiali di finitura esclusivi e di alta qualità per valorizzare al meglio il tuo immobile.</p>
                     <a href="<?php echo get_permalink(8); ?>#materiali" class="activity-link">Scopri di più</a>
                 </div>
