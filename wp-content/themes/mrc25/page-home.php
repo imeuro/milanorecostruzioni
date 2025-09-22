@@ -26,14 +26,14 @@ get_header(); ?>
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Le Nostre Attività</h2>
-                <p class="section-subtitle">Specialisti nella ristrutturazione e costruzione di qualità</p>
+                <p class="section-subtitle">Specialisti nel frazionamento e costruzione di qualità</p>
             </div>
             <div class="activities-grid">
                 <div class="activity-card">
                     <div class="activity-icon">
                         <i class="fa-solid fa-ruler-combined"></i>
                     </div>
-                    <h3>Ristrutturazioni</h3>
+                    <h3>Razionalizzazione</h3>
                     <p>Trasformiamo spazi esistenti in ambienti moderni e funzionali, rispettando l'identità architettonica.</p>
                     <a href="<?php echo get_permalink(8); ?>#ristrutturazioni" class="activity-link">Scopri di più</a>
                 </div>
@@ -43,7 +43,7 @@ get_header(); ?>
                     </div>
                     <h3>Frazionamento</h3>
                     <p>Suddivisione strategica di immobili in unità abitative più piccole, massimizzando il valore della proprietà.</p>
-                    <a href="<?php echo get_permalink(8); ?>#frazionamento" class="activity-link">Scopri di più</a>
+                    <a href="<?php echo get_permalink(8); ?>" class="activity-link">Scopri di più</a>
                 </div>
                 <div class="activity-card">
                     <div class="activity-icon">
@@ -97,7 +97,7 @@ get_header(); ?>
                 else :
                     ?>
                     <div class="portfolio-placeholder">
-                        <p>Nessun progetto disponibile al momento.</p>
+                        <p>Disponibili a breve...</p>
                     </div>
                     <?php
                 endif;
