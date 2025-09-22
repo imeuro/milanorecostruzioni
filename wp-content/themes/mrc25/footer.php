@@ -15,7 +15,8 @@
                 <div class="footer-societa">
                     <p>
                         <strong>MILANO RE COSTRUZIONI S.R.L.</strong><br>
-                        Sede legale: VIA FONTANA 17 - 20122 - MILANO (MI)<br>
+                        Sede legale: VIA FONTANA 17 <br>
+                        20122 - MILANO (MI)<br>
                         P.IVA/CF: 13800780960<br>
                         Rea: 2744518
                     </p>
