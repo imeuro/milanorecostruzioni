@@ -81,7 +81,7 @@ class MRC_CPT_Manager {
             'hierarchical'       => false,
             'menu_position'      => 20,
             'menu_icon'          => 'dashicons-portfolio',
-            'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
+            'supports'           => array('title', 'thumbnail'),
             'show_in_rest'       => false, // Non visibile in REST API
         );
         

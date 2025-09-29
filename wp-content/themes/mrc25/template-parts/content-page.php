@@ -19,16 +19,7 @@
     </header><!-- .entry-header -->
 
     <div class="entry-content">
-        <?php
-        the_content();
-
-        wp_link_pages(
-            array(
-                'before' => '<div class="page-links">' . esc_html__('Pagine:', 'mrc25'),
-                'after'  => '</div>',
-            )
-        );
-        ?>
+        <?php the_content(); ?>
     </div><!-- .entry-content -->
 
     <?php if (get_edit_post_link()) : ?>

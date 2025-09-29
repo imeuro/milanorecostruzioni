@@ -104,7 +104,7 @@ get_header(); ?>
                 ?>
             </div>
             <div class="portfolio-cta">
-                <a href="<?php echo get_post_type_archive_link('lavori'); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
+                <a href="<?php echo get_post_type_archive_link('portfoliolavori'); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
             </div>
         </div>
     </section>

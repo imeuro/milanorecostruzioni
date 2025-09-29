@@ -90,6 +90,9 @@ class MRC_Plugin {
         
         // Load Hero module
         $this->load_module('hero');
+        
+        // Load Lavori module
+        $this->load_module('lavori');
     }
     
     /**

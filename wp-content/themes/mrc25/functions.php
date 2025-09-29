@@ -90,13 +90,20 @@ add_action('widgets_init', 'mrc25_widgets_init');
 function mrc25_scripts() {
     wp_enqueue_style('mrc25-style', get_stylesheet_uri(), array(), '1.0.0');
     
+    // Carica le Dashicons per il frontend
+    
     wp_enqueue_script('mrc25-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '1.0.0', true);
-    wp_enqueue_script('mrc25-hero-carousel', get_template_directory_uri() . '/assets/js/hero-carousel.js', array(), '1.0.0', true);
-    wp_enqueue_script('mrc25-effects', get_template_directory_uri() . '/assets/js/effects.js', array(), '1.0.0', true);
-
-    if (is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
+    
+    // Carica gli script solo per il post type 'lavori'
+    if (is_singular('lavori') || is_post_type_archive('lavori')) {
+        wp_enqueue_style('dashicons');
+        wp_enqueue_script('mrc25-hero-carousel', get_template_directory_uri() . '/assets/js/hero-carousel.js', array(), '1.0.0', true);
+        wp_enqueue_script('mrc25-effects', get_template_directory_uri() . '/assets/js/effects.js', array(), '1.0.0', true);
+        wp_enqueue_script('mrc25-gallery-lightbox', get_template_directory_uri() . '/assets/js/gallery-lightbox.js', array(), '1.0.0', true);
+        wp_enqueue_script('mrc25-carousel', get_template_directory_uri() . '/assets/js/carousel.js', array(), '1.0.0', true);
     }
+
+
 }
 add_action('wp_enqueue_scripts', 'mrc25_scripts');
 
@@ -203,4 +210,56 @@ function mrc25_admin_notices() {
         echo '<div class="notice notice-success is-dismissible"><p>Immagini del carousel hero rigenerate con successo!</p></div>';
     }
 }
-add_action('admin_notices', 'mrc25_admin_notices'); 
+add_action('admin_notices', 'mrc25_admin_notices');
+
+/**
+ * Shortcode per mostrare la griglia dei lavori
+ */
+function mrc25_lavori_grid_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'limit' => 6,
+        'show_description' => 'true'
+    ), $atts);
+    
+    $portfolio_query = new WP_Query(array(
+        'post_type' => 'lavori',
+        'posts_per_page' => intval($atts['limit']),
+        'post_status' => 'publish'
+    ));
+    
+    if (!$portfolio_query->have_posts()) {
+        return '<div class="portfolio-placeholder"><p>Nessun lavoro disponibile al momento.</p></div>';
+    }
+    
+    ob_start();
+    ?>
+    <div class="portfolio-grid">
+        <?php while ($portfolio_query->have_posts()) : $portfolio_query->the_post(); ?>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <?php the_post_thumbnail('large'); ?>
+                    <?php else : ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder.jpg" alt="<?php the_title(); ?>">
+                    <?php endif; ?>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-content">
+                            <h3><?php the_title(); ?></h3>
+                            <?php if ($atts['show_description'] === 'true') : ?>
+                                <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
+                            <?php endif; ?>
+                            <a href="<?php the_permalink(); ?>" class="portfolio-link">Vedi Progetto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+    <?php
+    
+    wp_reset_postdata();
+    return ob_get_clean();
+}
+
+// Registra lo shortcode
+add_shortcode('lavori_grid', 'mrc25_lavori_grid_shortcode'); 
