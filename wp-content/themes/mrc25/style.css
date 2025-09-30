@@ -1542,3 +1542,27 @@ img.custom-logo {
         font-size: 1.1rem;
     }
 }
+
+
+form.wpcf7-form input,
+form.wpcf7-form textarea {
+    border: 1px solid var(--cream);
+    color: var(--primary-color);
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+}
+form.wpcf7-form input.wpcf7-submit {
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 18px;
+    display: block;
+    padding: 15px 15px;
+    width: 100%;
+    max-width: 300px;
+    margin: 40px 0 0 auto;
+    border-radius: 0;
+    cursor: pointer;
+}
