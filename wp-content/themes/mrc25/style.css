@@ -1487,7 +1487,7 @@ img.custom-logo {
 
 .mrc-carousel-counter {
     position: absolute;
-    bottom: 60px;
+    bottom: 65px;
     right: 20px;
     z-index: 10;
     text-align: center;
@@ -1496,7 +1496,7 @@ img.custom-logo {
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--text-color);
-    background: var(--light-gray);
+    background: #fff4;
     border-radius: 30px;
 }
 
