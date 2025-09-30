@@ -21,8 +21,7 @@ php_errorlog
 
 /wp-content/uploads
 
-/wp-content/plugins/*
-/wp-content/plugins/akismet
+wp-content/plugins/*
 !wp-content/plugins/temporary-static-page
 !wp-content/plugins/mrc
 
