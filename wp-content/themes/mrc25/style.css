@@ -1013,18 +1013,20 @@ img.custom-logo {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg,
+    backdrop-filter: blur(10px);
+    /* background: linear-gradient(135deg,
             rgba(37, 29, 7, 0.9) 0%,
-            rgba(37, 29, 7, 0.7) 100%);
+            rgba(37, 29, 7, 0.7) 100%); */
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: all 0.4s ease;
+    opacity: 1;
+    transition: all 0.5s ease;
 }
 
 .portfolio-item:hover .portfolio-overlay {
     opacity: 1;
+    backdrop-filter: blur(0px);
 }
 
 .portfolio-content {
@@ -1403,6 +1405,7 @@ img.custom-logo {
     height: 100%;
     position: relative;
     display: none;
+    padding: 8px;
 }
 
 .mrc-carousel-slide.active {
@@ -1414,6 +1417,7 @@ img.custom-logo {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 5px;
 }
 
 .mrc-carousel-caption {

@@ -76,6 +76,7 @@ get_header(); ?>
                     while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
                         ?>
                         <div class="portfolio-item">
+                            <a href="<?php the_permalink(); ?>" title="Vedi Progetto: <?php the_title(); ?>">
                             <div class="portfolio-image">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('large'); ?>
@@ -86,10 +87,11 @@ get_header(); ?>
                                     <div class="portfolio-content">
                                         <h3><?php the_title(); ?></h3>
                                         <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-                                        <a href="<?php the_permalink(); ?>" class="portfolio-link">Vedi Progetto</a>
+                                        <span class="portfolio-link">Vedi Progetto</span>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                         <?php
                     endwhile;

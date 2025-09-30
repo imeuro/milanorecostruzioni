@@ -236,6 +236,7 @@ function mrc25_lavori_grid_shortcode($atts) {
     <div class="portfolio-grid">
         <?php while ($portfolio_query->have_posts()) : $portfolio_query->the_post(); ?>
             <div class="portfolio-item">
+                <a href="<?php the_permalink(); ?>" title="Vedi Progetto: <?php the_title(); ?>">
                 <div class="portfolio-image">
                     <?php if (has_post_thumbnail()) : ?>
                         <?php the_post_thumbnail('large'); ?>
@@ -245,13 +246,12 @@ function mrc25_lavori_grid_shortcode($atts) {
                     <div class="portfolio-overlay">
                         <div class="portfolio-content">
                             <h3><?php the_title(); ?></h3>
-                            <?php if ($atts['show_description'] === 'true') : ?>
-                                <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-                            <?php endif; ?>
-                            <a href="<?php the_permalink(); ?>" class="portfolio-link">Vedi Progetto</a>
+                            <p><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
+                            <span class="portfolio-link">Vedi Progetto</span>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
         <?php endwhile; ?>
     </div>
