@@ -28,7 +28,7 @@ function mrc_display_lavoro_with_carousel($post_id = null) {
     
     $title = get_the_title($post_id);
     $description = mrc_get_lavoro_description($post_id);
-    $gallery_images = mrc_get_lavoro_gallery_images($post_id, 'large');
+    $gallery_images = mrc_get_lavoro_gallery_images($post_id, 'full');
     
     if (empty($gallery_images)) {
         return;
