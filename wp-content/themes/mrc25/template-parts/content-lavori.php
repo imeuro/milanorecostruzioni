@@ -6,8 +6,8 @@
  */
 
 // Includi le funzioni di visualizzazione della galleria
-require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/template-example.php';
-require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/example-carousel.php';
+require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/mrc25-template.php';
+require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/mrc25-carousel.php';
 
 ?>
 

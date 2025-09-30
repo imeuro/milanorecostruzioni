@@ -9,8 +9,8 @@ Le funzioni `mrc_display_gallery_grid` e `mrc_display_gallery_lightbox` non funz
 ### 1. Inclusione delle funzioni
 Ho aggiunto nel file `template-parts/content-lavori.php` alle **righe 9-10**:
 ```php
-require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/template-example.php';
-require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/example-carousel.php';
+require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/mrc25-template.php';
+require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/mrc25-carousel.php';
 ```
 
 ### 2. Stili CSS aggiunti
