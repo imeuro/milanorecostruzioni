@@ -119,7 +119,6 @@ a:hover {
 
 .scrolled .site-branding {
     opacity: 1;
-    height: 100px;
 }
 
 img.custom-logo {
@@ -161,7 +160,6 @@ img.custom-logo {
     background: rgba(234, 232, 227, 0.8);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    height: 100px;
 }
 
 /* --- Media Query HEADER --- */
@@ -179,6 +177,10 @@ img.custom-logo {
     img.custom-logo {
         max-width: 200px;
         height: 68px;
+    }
+    .scrolled .site-branding,
+    .site-header.scrolled {
+        height: 100px;
     }
 }
 

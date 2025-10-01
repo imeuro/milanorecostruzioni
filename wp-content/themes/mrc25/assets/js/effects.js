@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // Aggiungi classe scrolled quando si scrolla
-        if (scrollTop > 150) {
+        if (scrollTop > 150 && window.innerWidth > 1024) {
             header.classList.add('scrolled');
             // Cambio logo desktop e mobile
             const logoDesktop = document.getElementById('site-logo-desktop');
