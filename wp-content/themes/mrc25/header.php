@@ -93,6 +93,7 @@
             'container'      => false,
         ));
         ?>
+        <span class="mobile-menu-text-bottom">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></span>
     </nav>
 </body>
 </html> 

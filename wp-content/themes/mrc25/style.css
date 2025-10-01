@@ -253,6 +253,9 @@ img.custom-logo {
 
     .nav-menu li a {
         font-size: 1.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -348,15 +351,28 @@ img.custom-logo {
     z-index: 9999;
     box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08);
     transition: left 0.3s;
-    padding: 1rem 2rem 2rem 3rem;
+    padding: 60px 2rem 2rem 2rem;
     overflow-y: auto;
     display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     flex-direction: column;
     gap: 2rem;
 }
 
 .mobile-menu.open {
     left: 0;
+}
+
+.mobile-menu .menu-branding {
+    height: 60px;
+    width: 80vw;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    background: var(--primary-color);
+    padding: 0px 0 0 50px;
 }
 
 .mobile-menu-list {
@@ -366,7 +382,7 @@ img.custom-logo {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 8rem;
 }
 
 .mobile-menu-list li a {
@@ -381,6 +397,10 @@ img.custom-logo {
 
 .mobile-menu-list li a:hover {
     color: var(--primary-color);
+}
+.mobile-menu-text-bottom {
+    color: #251D0755;
+    font-size: 12px;
 }
 
 /* --- Media Query NAVIGAZIONE MOBILE --- */
@@ -575,7 +595,7 @@ img.custom-logo {
     background-color: var(--primary-color);
     color: var(--cream);
     padding: 2rem 0;
-    margin-top: 2rem;
+    margin-top: 16rem;
 }
 
 .footer-content {
@@ -939,7 +959,7 @@ img.custom-logo {
 
 /* Sezione Portfolio */
 .mrc-portfolio {
-    padding: 6rem 0;
+    padding: 16rem 0 0 0;
     background: var(--cream);
 }
 
@@ -1125,7 +1145,7 @@ img.custom-logo {
     }
 
     .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem;
     }
 
@@ -1546,13 +1566,23 @@ img.custom-logo {
 
 form.wpcf7-form input,
 form.wpcf7-form textarea {
-    border: 1px solid var(--cream);
+    border: none;
+    background: var(--white);
     color: var(--primary-color);
     font-size: 18px;
     display: block;
     padding: 10px 15px;
+    margin-top: 5px;
     width: 100%;
     border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form.wpcf7-form input:focus,
+form.wpcf7-form textarea:focus {
+    outline: none;
+    border: none !important;
+    background: #fff;
 }
 form.wpcf7-form input.wpcf7-submit {
     background: var(--primary-color);
@@ -1561,7 +1591,6 @@ form.wpcf7-form input.wpcf7-submit {
     display: block;
     padding: 15px 15px;
     width: 100%;
-    max-width: 300px;
     margin: 40px 0 0 auto;
     border-radius: 0;
     cursor: pointer;

@@ -11,7 +11,7 @@
     <header class="entry-header entry-header-full">
         <?php if (has_post_thumbnail()) : ?>
             <div class="post-thumbnail">
-                <?php the_post_thumbnail('mrc25-featured'); ?>
+                <?php the_post_thumbnail('full'); ?>
             </div>
         <?php endif; ?>
 

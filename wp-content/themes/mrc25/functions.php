@@ -90,15 +90,14 @@ add_action('widgets_init', 'mrc25_widgets_init');
 function mrc25_scripts() {
     wp_enqueue_style('mrc25-style', get_stylesheet_uri(), array(), '1.0.0');
     
-    // Carica le Dashicons per il frontend
-    
+    // Carica le Dashicons e gli scripts per il frontend
     wp_enqueue_script('mrc25-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '1.0.0', true);
-    
+    wp_enqueue_script('mrc25-effects', get_template_directory_uri() . '/assets/js/effects.js', array(), '1.0.0', true);
+    wp_enqueue_style('dashicons');
+
     // Carica gli script solo per il post type 'lavori'
     if (is_singular('lavori') || is_post_type_archive('lavori')) {
-        wp_enqueue_style('dashicons');
         wp_enqueue_script('mrc25-hero-carousel', get_template_directory_uri() . '/assets/js/hero-carousel.js', array(), '1.0.0', true);
-        wp_enqueue_script('mrc25-effects', get_template_directory_uri() . '/assets/js/effects.js', array(), '1.0.0', true);
         wp_enqueue_script('mrc25-gallery-lightbox', get_template_directory_uri() . '/assets/js/gallery-lightbox.js', array(), '1.0.0', true);
         wp_enqueue_script('mrc25-carousel', get_template_directory_uri() . '/assets/js/carousel.js', array(), '1.0.0', true);
     }

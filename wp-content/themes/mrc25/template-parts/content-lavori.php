@@ -18,7 +18,7 @@ require_once WP_CONTENT_DIR . '/plugins/mrc/modules/lavori/mrc25-carousel.php';
         $thumbnail_id = get_post_thumbnail_id(9);
         if ($thumbnail_id) : ?>
             <div class="post-thumbnail">
-                <?php echo wp_get_attachment_image($thumbnail_id, 'mrc25-featured'); ?>
+                <?php echo wp_get_attachment_image($thumbnail_id, 'full'); ?>
             </div>
         <?php endif; ?>
 

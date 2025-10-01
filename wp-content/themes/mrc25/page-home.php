@@ -68,7 +68,7 @@ get_header(); ?>
                 <?php
                 $portfolio_query = new WP_Query(array(
                     'post_type' => 'lavori',
-                    'posts_per_page' => 6,
+                    'posts_per_page' => 4,
                     'post_status' => 'publish'
                 ));
                 
@@ -105,9 +105,16 @@ get_header(); ?>
                 endif;
                 ?>
             </div>
-            <div class="portfolio-cta">
-                <a href="<?php echo get_post_type_archive_link('portfoliolavori'); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
-            </div>
+            <?php
+            // Conta il numero totale di post pubblicati nel post type 'lavori'
+            $total_posts = wp_count_posts('lavori')->publish;
+            // Se ci sono più di 4 post pubblicati
+            if($total_posts > 4) :
+            ?>
+                <div class="portfolio-cta">
+                    <a href="<?php echo get_post_type_archive_link('portfolio-lavori'); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 </main><!-- #main -->
