@@ -26,7 +26,7 @@ get_header(); ?>
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Le Nostre Attività</h2>
-                <p class="section-subtitle">Specialisti nel frazionamento e costruzione di qualità</p>
+                <p class="section-subtitle">Trasformiamo spazi in ambienti moderni e funzionali, ottimizzando il valore immobiliare attraverso frazionamenti strategici e personalizzazioni di prestigio.</p>
             </div>
             <div class="activities-grid">
                 <div class="activity-card">
