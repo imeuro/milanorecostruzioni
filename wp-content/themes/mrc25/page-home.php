@@ -62,7 +62,7 @@ get_header(); ?>
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">I Nostri Lavori</h2>
-                <p class="section-subtitle">Portfolio dei progetti realizzati con passione e professionalità</p>
+                <p class="section-subtitle">Gli ultimi progetti, realizzati con passione e professionalità.</p>
             </div>
             <div class="portfolio-grid">
                 <?php
@@ -112,7 +112,7 @@ get_header(); ?>
             if($total_posts > 4) :
             ?>
                 <div class="portfolio-cta">
-                    <a href="<?php echo get_post_type_archive_link('portfolio-lavori'); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
+                    <a href="<?php echo get_page_link( get_page_by_path('portfolio-lavori')->ID ); ?>" class="btn-primary">Vedi Tutti i Progetti</a>
                 </div>
             <?php endif; ?>
         </div>
